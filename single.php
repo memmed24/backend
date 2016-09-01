@@ -32,15 +32,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="wrap">
 			<div class="menu">
 			    <ul>
-			    	<li><a href="index.html">HOME</a></li>
-			    	<li><a href="single.html">ARTICLES</a></li>
-			    	<li><a href="single.html">SERVICES</a></li>
+			    	<li><a href="index.php">HOME</a></li>
+			    	<li><a href="single.php">ARTICLES</a></li>
+			    	<li><a href="single.php">SERVICES</a></li>
 			    	<li><a href="#">LOGOS</a></li>
-			    	<li><a href="single.html">TOOLS</a></li>
-			    	<li><a href="single.html">ICONS</a></li>
-			    	<li><a href="single.html">WALLPAPERS</a></li>
-			    	<li><a href="index.html">HELP</a></li>
-			    	<li><a href="contact.html">CONTACT</a></li>
+			    	<li><a href="single.php">TOOLS</a></li>
+			    	<li><a href="single.php">ICONS</a></li>
+			    	<li><a href="single.php">WALLPAPERS</a></li>
+			    	<li><a href="index.php">HELP</a></li>
+			    	<li><a href="contact.php">CONTACT</a></li>
 			    </ul>
 			</div>
 			<div class="search_box">

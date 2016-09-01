@@ -12,7 +12,7 @@
 			<div class="header_top">
 				<div class="wrap">
 					<div class="logo">
-						<a href="index.html"><img src="images/logo.png" alt="" /></a>
+						<a href="index.php	"><img src="images/logo.png" alt="" /></a>
 					</div>
 					<div class="login_button">
 						<ul>
@@ -47,10 +47,10 @@
 				<tr> 
 					<td> <?php print_r($row['header']); ?> </td>
 					<td> <?php print_r($row['text']); ?> </td>
-					<td> <img style="height:100px;" src="<?=$row['photo']; ?>"</td>
+					<td> <img style="height:100px;" src="<?= $row['photo']; ?>"</td>
 					<td> 
-						<a class="btn btn-primary" href= "update.php">Update</a>
-						<a class="btn btn-danger" href= "delete.php">Delete</a>
+						<a class="btn btn-primary" href= "update.php?id= <?= $row['id'] ?>">Update</a>
+						<a class="btn btn-danger" href="delete.php?id=<?= $row['id'] ?>">Delete</a>
 					</td>
 				</tr>
 				<?php } ?>
