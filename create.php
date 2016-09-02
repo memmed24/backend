@@ -69,7 +69,7 @@ body{
 	</section>
 	<section id="add">
 		<form action="" method="post" enctype="multipart/form-data">
-			<input type="text" name="header" placeholder="header"> <br>
+<!--			<input type="text" name="header" placeholder="header"> <br>-->
 			<textarea name="text" placeholder="text" id="txt" cols="40" rows="5"></textarea>
 <!-- 			<input type="text" name="text" placeholder="text"> <br> -->
 			<input type="file" name="picture">
@@ -79,8 +79,10 @@ body{
 	<?php 
 		include 'db.php';
 		if(isset($_POST['submit'])){
-			$new_header = $_POST['header'];
+			#$new_header = $_POST['header'];
 			$new_text = $_POST['text'];
+            $a = explode('.', $new_text);
+            $new_header = $a[0];
 			$file = $_FILES['picture'];
 			$target_dir = "images/";
 			$target_file = $target_dir.basename($file['name']);
@@ -92,6 +94,7 @@ body{
 
 			if ($query) {
 				header('Location: admin.php');
+
 			}else{
 				echo "error launched";
 			}

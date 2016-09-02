@@ -2,10 +2,11 @@
 <html>
 <head>
 	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
 	<form action="" method="post" enctype="multipart/form-data">
-		<input type="text" name="header" placeholder="header"> <br>
+<!--		<input type="text" name="header" placeholder="header"> <br>-->
 		<textarea name="text" placeholder="new text" id="txt" cols="40" rows="5"></textarea> <br>
 		<input type="file" name="picture"> <br>
 		<input type="submit" class="btn btn-success" name="submit">
@@ -15,8 +16,9 @@
 include "db.php";
 	if(isset($_POST['submit'])){
 		$id = $_GET['id'];
-		$header = $_POST['header'];
 		$txt = $_POST['text'];
+        $a = explode('.', $txt);
+        $header = $a[0];
 		$file = $_FILES['picture'];
 		$target_dir = "images/";
 		$target_file = $target_dir.basename($file['name']);

@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>The Free Blogsite.com Website Template | Home :: w3layouts</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
 </head>
@@ -20,7 +20,7 @@ include 'db.php';
 	<div class="header_top">
 		<div class="wrap">
 			<div class="logo">
-			     <a href="index.html"><img src="images/logo.png" alt="" /></a>
+			     <a href="index.php"><img src="images/logo.png" alt="" /></a>
 			</div>
 			<div class="login_button">
 			    <ul>
@@ -47,9 +47,10 @@ include 'db.php';
 			    </ul>
 			</div>
 			<div class="search_box">
-			    <form>
-			    <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
+			    <form action="search.php" method="post">
+			    <input type="text" name="search" placeholder="Xəbər başlığı ilə axtarın..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" name="submit" value="">
 			    </form>
+
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -64,14 +65,15 @@ include 'db.php';
 				$query = mysqli_query($db_con, $sql);
 				while($row = mysqli_fetch_assoc($query)){ ?>
 					<div class="box1">
-						<h2><a href="single.php"> <?php print_r($row['header']); ?> </a></h2>
+						<h2><a href="read.php?id=<?= $row['id']; ?>"> <?php print_r($row['header']); ?> </a></h2>
+						<span><?=$row['time_']; ?></span>
 						<div class="box1_img">
 							<img src="<?=$row['photo'];?>">
 						</div>
 						<div class="data">
 							<p><?php
 								$b = $row['text'];
-								$a = substr($b, 0, 50);
+								$a = substr($b, 0, 75);
 								print_r($a."..."); ?></p>
 							<a name="read" href="read.php?id=<?= $row['id'];?>">Continue reading >>></a>
 						</div>
@@ -102,28 +104,29 @@ include 'db.php';
 		</div>
 	<div class="sidebar">
 		<div class="side_top">
-		    <h2>Recent Feeds</h2>
+		    <h2>Ən son xəbərlər</h2>
 			<div class="list1">
 				 <ul>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
+					<?php
+						$sql__ = "SELECT * FROM news ORDER BY time_ DESC  limit 4";
+						$query__ = mysqli_query($db_con, $sql__);
+						while ($row = mysqli_fetch_assoc($query__)){ ?>
+							<li><a href=""> <?= substr($row['text'], 0, 40); ?> </a></li>
+						<?php }
+					?>
 				</ul>
 			</div>
 		</div>
 	<div class="side_bottom">
-	    <h2>Most Viewed</h2>
+	    <h2>Ən çox oxunan xəbərlər</h2>
 		<div class="list2">
 		    <ul>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
+				 <?php
+				 	$sql_ = "SELECT * FROM news ORDER BY views DESC limit 3";
+				 	$query_ = mysqli_query($db_con, $sql_);
+				 	while ($row = mysqli_fetch_assoc($query_)){ ?>
+						<li><a href=""> <?= substr($row['text'], 0,40); ?>... - <?php echo $row['views'];?></a></li>
+					<?php } ?>
 			</ul>
 		</div>
 	</div>

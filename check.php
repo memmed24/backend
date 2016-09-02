@@ -19,8 +19,8 @@ include 'db.php';
 			font-size:12px;
 			color:#666;
 			width:195px;
-			padding:3px;
-
+			padding:10px;
+			margin-top: 15px;
 			margin-left: 600px;
 		}
 		input[type="password"]{
@@ -28,16 +28,16 @@ include 'db.php';
 			font-size:12px;
 			color: #000;
 			width:195px;
-			padding:3px;
-
+			padding:10px;
+			margin-top: 15px;
 			margin-left: 600px;
 		}
 		input[type="submit"]{
 			outline:none;
 			font-size:12px;
 			width:195px;
-			padding:3px;
-
+			padding:10px;
+			margin-top: 15px;
 			margin-left: 600px;
 		}
 		#login{
@@ -110,10 +110,12 @@ include 'db.php';
 			</div>
 		</section>
 	</body>
-	<?php 
+	<?php
+	session_start();
 		if(isset($_POST['submit'])){
 			include 'db.php';
 			$email = $_POST['email'];
+			$_SESSION['success'] = false;
 			$password = $_POST['password'];
 			$sql = "SELECT `password` FROM admin WHERE `email`='$email'" ;
 			$query = mysqli_query($db_con, $sql);
@@ -121,6 +123,7 @@ include 'db.php';
 				$row = mysqli_fetch_assoc($query);	
 				$pass=$row['password'];
 				if($pass==$password){
+					$_SESSION['success'] = true;
 					header('Location:admin.php');
 				}
 				else{
@@ -130,6 +133,6 @@ include 'db.php';
 			else{
 				echo "Bu email yoxdur";
 			}
-		} 
+		}
 	 ?>
 </html>

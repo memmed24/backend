@@ -4,11 +4,20 @@
         <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
         <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     </head>
     <style>
         .box{
-            height: 75px;
             margin-top: 25px;
+        }
+        .center{
+            margin-left: 275px;
+            padding-bottom: 110px;
+            padding-top: 20px;
+            width: 591px;
+        }
+        h1{
+            color: #254779;
         }
     </style>
     <body>
@@ -29,19 +38,25 @@
             </div>
         </section>
         <section class="news container">
-            <?php
-            include "db.php";
-                $id = $_GET['id'];
-                $sql = "SELECT * FROM news WHERE id='$id'";
-                $query = mysqli_query($db_con, $sql);
-                $row = mysqli_fetch_assoc($query); ?>
-                <img style="height: 250px;" src="<?=$row['photo']; ?>">
-                <div class="box">
+           <div class="center">
+               <?php
+               include "db.php";
+               $id = $_GET['id'];
+               $sql = "SELECT * FROM news WHERE id='$id'";
+               $query = mysqli_query($db_con, $sql);
+               $row = mysqli_fetch_assoc($query);
+               $views = $row['views'] + 1;
+               $count = "UPDATE news SET views = '{$views}' WHERE id = '{$id}'";
+               $query_count = mysqli_query($db_con, $count);
+               ?>
+               <img style="" src="<?=$row['photo']; ?>">
+               <h1> <?php echo $row['header']; ?> <i style="font-size: 25px" class="fa fa-eye" aria-hidden="true"><?php echo $views; ?></i> </h1>
+
+               <div class="box">
 
                    <?php  print_r($row['text']); ?>
-
-                </div>
-
+               </div>
+           </div>
         </section>
         <section id="footer">
             <div class="footer">

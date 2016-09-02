@@ -7,6 +7,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
+
+
 <body>
 	<section id="header">
 			<div class="header_top">
@@ -39,7 +41,9 @@
 					<th>Header</th>
 					<th>Text</th>
 					<th>Photo</th>
-					<th >Action</th>
+					<th>Action</th>
+					<th>Time</th>
+					<th>Views</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -52,11 +56,15 @@
 						<a class="btn btn-primary" href= "update.php?id= <?= $row['id'] ?>">Update</a>
 						<a class="btn btn-danger" href="delete.php?id=<?= $row['id'] ?>">Delete</a>
 					</td>
+					<td> <?php print_r($row['time_']); ?> </td>
+					<td> <?php print_r($row['views'])?></td>
 				</tr>
 				<?php } ?>
 			</tbody>
 			<?php } ?>
 		</table>
 	</section>
+
+
 </body>
 </html>
